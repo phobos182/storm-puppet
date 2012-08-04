@@ -18,7 +18,4 @@ class storm::supervisor {
   # Install supervisor /etc/default
   storm::service::install { 'supervisor': start => 'yes', jvm_memory => $storm::params::supervisor_mem }
 
-  # Install monit check
-  monit::module::install { 'process_storm_supervisor': }
-
 }

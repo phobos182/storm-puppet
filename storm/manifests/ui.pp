@@ -18,7 +18,4 @@ class storm::ui {
   # Install ui /etc/default
   storm::service::install { 'ui': start => 'yes', jvm_memory => $storm::params::ui_mem }
 
-  # Install monit check
-  monit::module::install { 'process_storm_ui': }
-
 }

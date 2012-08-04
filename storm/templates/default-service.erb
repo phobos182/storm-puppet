@@ -1,0 +1,11 @@
+# /etc/default/storm-<%= name %>
+
+#_ START? _#
+ENABLE="<%= start %>"
+
+#_ PID FILE _#
+STORM_PID="/var/run/storm-<%= name %>.pid"
+
+#_ NIMBUS _#
+STORM_<%= name.upcase %>_JVM_MEMORY="<%= jvm_memory %>"
+STORM_<%= name.upcase %>_JVM_OPTS="<%= opts.join(' ') %>"

@@ -1,0 +1,11 @@
+# /etc/default/storm
+
+JAVA_LIBRARY_PATH="<%= scope.lookupvar('storm::params::java_library_path').join(':') %>"
+STORM_USER="<%= scope.lookupvar('storm::params::storm_user') %>"
+STORM_HOME="<%= scope.lookupvar('storm::params::storm_home') %>"
+STORM_LIB="<%= scope.lookupvar('storm::params::storm_lib') %>"
+STORM_JAR="<%= scope.lookupvar('storm::params::storm_jar') %>"
+STORM_CONF="<%= scope.lookupvar('storm::params::storm_conf') %>"
+STORM_CLASSPATH="<% scope.lookupvar('storm::params::storm_classpath').each do |p| -%>$(echo <%= p %> | tr ' ' ':'):"<% end -%>
+
+STORM_OPTIONS="<%= scope.lookupvar('storm::params::storm_options') %>"

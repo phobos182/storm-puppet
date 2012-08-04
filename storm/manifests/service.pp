@@ -1,4 +1,4 @@
-# Class: storm::service
+# Define: storm::service
 #
 # This module manages storm serviceation
 #
@@ -8,22 +8,19 @@
 #
 # Requires: storm::install
 #
-# Sample Usage: storm::service::install { 'nimbus': start => 'yes', jvm_memory => '1024m' }
+# Sample Usage: storm::service { 'nimbus':
+#                 start => 'yes',
+#                 jvm_memory => '1024m'
+#               }
 #
-class storm::service {
-  require storm::install
+define storm::service(start = 'no', jvm_memory = '768m', opts = []) {
 
-  # Install a file in /etc/default/storm-${name} with options
-  define install(start = 'no', jvm_memory = '768m', opts = []) {
-
-    file { "/etc/default/storm-${name}":
-      require => Package['storm'],
-      content => template('storm/default-service.erb'),
-      owner   => 'root',
-      group   => 'root',
-      mode    => 0644;
-    }
-
+  file { "/etc/default/storm-${name}":
+    require => Package['storm'],
+    content => template('storm/default-service.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644'
   }
 
 }

@@ -12,7 +12,7 @@
 #
 class storm::install {
 
-  package { ['storm', 'libjzmq', 'libzmq0']: 
+  package { ['storm', 'libjzmq', 'libzmq0']:
     ensure => 'installed'
   }
 

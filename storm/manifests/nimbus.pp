@@ -16,6 +16,9 @@ class storm::nimbus {
   include storm::params
 
   # Install nimbus /etc/default
-  storm::service::install { 'nimbus': start => 'yes', jvm_memory => $storm::params::nimbus_mem }
+  storm::service { 'nimbus':
+    start      => 'yes',
+    jvm_memory => $storm::params::nimbus_mem
+  }
 
 }

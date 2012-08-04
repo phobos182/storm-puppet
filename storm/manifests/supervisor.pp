@@ -16,6 +16,9 @@ class storm::supervisor {
   include storm::params
 
   # Install supervisor /etc/default
-  storm::service::install { 'supervisor': start => 'yes', jvm_memory => $storm::params::supervisor_mem }
+  storm::service { 'supervisor':
+    start      => 'yes',
+    jvm_memory => $storm::params::supervisor_mem
+  }
 
 }

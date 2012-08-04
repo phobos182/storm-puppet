@@ -8,7 +8,7 @@
 #
 # Requires: storm::install
 #
-# Sample Usage: storm::service::install { 'nimbus': start => 'yes', jvm_memory => '1024' }
+# Sample Usage: storm::service::install { 'nimbus': start => 'yes', jvm_memory => '1024m' }
 #
 class storm::service {
   require storm::install

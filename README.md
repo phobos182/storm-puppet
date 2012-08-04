@@ -10,7 +10,7 @@ Requirements
 You must have your own internal repository and include the 3 packages
 compiled for Debian / Ubuntu (storm, libjzmq, libzmq0). You can also modify this module to use your
 own internal packaging as you see fit. You can find the .deb packaging for
-storm here (<https://github.com/phobos182/storm-deb-packaging>).
+storm here (<https://github.com/phobos182/storm-deb-packaging>). This module makes a lot of assumptions regarding /etc/default/storm* for Storm configuration settings.
 
 Puppet requirements
 

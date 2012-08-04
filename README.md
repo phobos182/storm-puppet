@@ -42,7 +42,6 @@ Node Definition (node.pp)
     #_ STORM _#
     node /storm[1-9]/ {
       $cluster = 'storm1'
-      include templates::baseserver
       include storm::supervisor
     }
     

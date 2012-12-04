@@ -13,7 +13,7 @@
 #                 jvm_memory => '1024m'
 #               }
 #
-define storm::service(start = 'no', jvm_memory = '768m', opts = []) {
+define storm::service( $start = 'no', $jvm_memory = '768m', $opts = []) {
 
   file { "/etc/default/storm-${name}":
     require => Package['storm'],

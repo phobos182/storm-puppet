@@ -25,6 +25,9 @@ class storm::nimbus {
   Class['storm::nimbus'] ~>
   Class['storm::service::nimbus']
 
+  Class['storm::config'] ~>
+  Class['storm::service::nimbus']
+
   file { '/etc/default/storm-nimbus':
     content => template('storm/storm-nimbus.erb'),
     owner   => 'root',

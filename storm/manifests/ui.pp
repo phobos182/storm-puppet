@@ -25,6 +25,9 @@ class storm::ui {
   Class['storm::ui'] ~>
   Class['storm::service::ui']
 
+  Class['storm::config'] ~>
+  Class['storm::service::nimbus']
+
   file { '/etc/default/storm-ui':
     content => template('storm/storm-ui.erb'),
     owner   => 'root',

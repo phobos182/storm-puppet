@@ -15,7 +15,7 @@ class storm (
   $storm_libjzmq_version = hiera('storm_libjzmq_version', '2.1.7'),
   $storm_libzmq1_version = hiera('storm_libzmq1_version', '2.1.7'),
   $storm_zookeeper_servers  = hiera_array('storm_zookeeper_servers', ['localhost']),
-  $storm_local_dir = hiera('storm_local_dir', '/mnt/storm'),
+  $storm_local_dir = hiera('storm_local_dir', '/var/lib/storm'),
   $storm_java_library_path = hiera_array('storm_java_library_path', ['/usr/local/lib', '/usr/lib', '/usr/lib/storm']),
   $storm_nimbus_host = hiera('storm_nimbus_host', 'localhost'),
   $storm_supervisor_start_port = hiera('supervisor_slots_start_port', '6700'),

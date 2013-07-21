@@ -25,6 +25,9 @@ class storm::drpc {
   Class['storm::drpc'] ~>
   Class['storm::service::drpc']
 
+  Class['storm::config'] ~>
+  Class['storm::service::nimbus']
+
   file { '/etc/default/storm-drpc':
     content => template('storm/storm-drpc.erb'),
     owner   => 'root',

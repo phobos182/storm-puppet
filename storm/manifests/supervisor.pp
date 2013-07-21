@@ -26,7 +26,7 @@ class storm::supervisor {
   Class['storm::service::supervisor']
 
   Class['storm::config'] ~>
-  Class['storm::service::nimbus']
+  Class['storm::service::drpc']
 
   file { '/etc/default/storm-supervisor':
     content => template('storm/storm-supervisor.erb'),

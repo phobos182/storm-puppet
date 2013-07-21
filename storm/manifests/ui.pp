@@ -26,7 +26,7 @@ class storm::ui {
   Class['storm::service::ui']
 
   Class['storm::config'] ~>
-  Class['storm::service::nimbus']
+  Class['storm::service::ui']
 
   file { '/etc/default/storm-ui':
     content => template('storm/storm-ui.erb'),

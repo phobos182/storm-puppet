@@ -6,19 +6,30 @@
 #
 # Actions: None
 #
-# Requires: storm::install
+# Requires: storm:install
 #
 # Sample Usage: include storm::supervisor
 #
 class storm::supervisor {
-  require storm::install
+  include storm::install
   include storm::config
-  include storm::params
+  include storm::service::supervisor
 
-  # Install supervisor /etc/default
-  storm::service { 'supervisor':
-    start      => 'yes',
-    jvm_memory => $storm::params::supervisor_mem
+  # Variables
+  $storm_supervisor = $::storm::storm_supervisor
+  $storm_supervisor_jvm_memory = $::storm::storm_supervisor_jvm_memory
+
+  # Ordering
+  Class['storm::install'] ->
+  Class['storm::config'] ->
+  Class['storm::supervisor'] ~>
+  Class['storm::service::supervisor']
+
+  file { '/etc/default/storm-supervisor':
+    content => template('storm/storm-supervisor.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644'
   }
 
 }

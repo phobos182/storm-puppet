@@ -11,14 +11,25 @@
 # Sample Usage: include storm::drpc
 #
 class storm::drpc {
-  require storm::install
+  include storm::install
   include storm::config
-  include storm::params
+  include storm::service::drpc
 
-  # Install drpc /etc/default
-  storm::service { 'drpc':
-    start      => 'yes',
-    jvm_memory => $storm::params::drpc_mem
+  # Variables
+  $storm_drpc = $::storm::storm_drpc
+  $storm_drpc_jvm_memory = $::storm::storm_drpc_jvm_memory
+
+  # Ordering
+  Class['storm::install'] ->
+  Class['storm::config'] ->
+  Class['storm::drpc'] ~>
+  Class['storm::service::drpc']
+
+  file { '/etc/default/storm-drpc':
+    content => template('storm/storm-drpc.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644'
   }
 
 }

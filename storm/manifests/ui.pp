@@ -6,19 +6,30 @@
 #
 # Actions: None
 #
-# Requires: storm::install
+# Requires: storm:install
 #
 # Sample Usage: include storm::ui
 #
 class storm::ui {
-  require storm::install
+  include storm::install
   include storm::config
-  include storm::params
+  include storm::service::ui
 
-  # Install ui /etc/default
-  storm::service { 'ui':
-    start      => 'yes',
-    jvm_memory => $storm::params::ui_mem
+  # Variables
+  $storm_ui = $::storm::storm_ui
+  $storm_ui_jvm_memory = $::storm::storm_ui_jvm_memory
+
+  # Ordering
+  Class['storm::install'] ->
+  Class['storm::config'] ->
+  Class['storm::ui'] ~>
+  Class['storm::service::ui']
+
+  file { '/etc/default/storm-ui':
+    content => template('storm/storm-ui.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644'
   }
 
 }

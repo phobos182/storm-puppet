@@ -6,19 +6,30 @@
 #
 # Actions: None
 #
-# Requires: storm::install
+# Requires: storm:install
 #
 # Sample Usage: include storm::nimbus
 #
 class storm::nimbus {
-  require storm::install
+  include storm::install
   include storm::config
-  include storm::params
+  include storm::service::nimbus
 
-  # Install nimbus /etc/default
-  storm::service { 'nimbus':
-    start      => 'yes',
-    jvm_memory => $storm::params::nimbus_mem
+  # Variables
+  $storm_nimbus = $::storm::storm_nimbus
+  $storm_nimbus_jvm_memory = $::storm::storm_nimbus_jvm_memory
+
+  # Ordering
+  Class['storm::install'] ->
+  Class['storm::config'] ->
+  Class['storm::nimbus'] ~>
+  Class['storm::service::nimbus']
+
+  file { '/etc/default/storm-nimbus':
+    content => template('storm/storm-nimbus.erb'),
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644'
   }
 
 }

@@ -16,7 +16,7 @@
 define storm::service( $start = 'no', $jvm_memory = '768m', $opts = []) {
 
   file { "/etc/default/storm-${name}":
-    require => Package['storm'],
+    include => Package['storm'],
     content => template('storm/default-service.erb'),
     owner   => 'root',
     group   => 'root',
